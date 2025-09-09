@@ -7,6 +7,8 @@ export default defineConfig({
   plugins: [
     RubyPlugin(),
     react(),
-    FullReload(["config/routes.rb", "app/views/**/"], { delay: 200 }),
+    FullReload(["config/routes.rb", "app/views/**/", "app/frontend/**"], {
+      delay: 200,
+    }),
   ],
 });

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "To Do List" %></title>
+    <title><%= content_for(:title) || "AirBnB" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,12 +12,11 @@
     <%= vite_client_tag %>
     <%= vite_react_refresh_tag %>
     <%= vite_javascript_tag 'application' %>
-    <%= vite_stylesheet_tag 'application' %>
+    <%= vite_stylesheet_tag 'application.scss' %>
 
   </head>
 
   <body>
-    <%= content_tag(:div, "", id: "root") %>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,29 @@
+.property-image {
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  @media (min-width: 768px) {
+    height: 400px;
+  }
+}
+
+.box-component {
+  border-radius: 6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: 2px solid rgb(245, 245, 245);
+}
+
+.pay {
+  display: inline-block;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.pay-complete {
+  background-color: rgb(137, 245, 137);
+}
+
+.pay-processing {
+  background-color: rgb(255, 205, 111);
+}

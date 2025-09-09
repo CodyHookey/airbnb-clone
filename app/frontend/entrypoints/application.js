@@ -37,8 +37,11 @@ for (const path in channels) {
 // Example: Import a stylesheet in app/frontend/index.css
 // import '~/index.css'
 
-// Import Bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
-
 // Import Bootstrap JavaScript
 import "bootstrap";
+
+import "../styles/global.scss";
+
+// if (typeof global === "undefined") {
+//   window.global = window;
+// }

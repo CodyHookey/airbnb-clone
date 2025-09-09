@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_25_182240) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_06_091402) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,46 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_25_182240) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.bigint "user_id"
+    t.bigint "property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_bookings_on_property_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "charges", force: :cascade do |t|
+    t.string "checkout_session_id"
+    t.string "currency"
+    t.decimal "amount", precision: 10, scale: 2
+    t.boolean "complete", default: false
+    t.bigint "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_charges_on_booking_id"
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "city"
+    t.string "country"
+    t.string "property_type"
+    t.integer "price_per_night"
+    t.integer "max_guests"
+    t.integer "bedrooms"
+    t.integer "beds"
+    t.integer "baths"
+    t.string "image_url"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_properties_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string "token"
     t.bigint "user_id"
@@ -56,9 +96,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_25_182240) do
     t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "property_owner", default: false, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "properties"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "charges", "bookings"
+  add_foreign_key "properties", "users"
   add_foreign_key "sessions", "users"
 end

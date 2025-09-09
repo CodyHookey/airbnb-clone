@@ -1,0 +1,29 @@
+.pay {
+  display: inline-block;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.pay-complete {
+  background-color: rgb(137, 245, 137);
+}
+
+.pay-processing {
+  background-color: rgb(255, 205, 111);
+}
+
+.property-image {
+  border-radius: 5px;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  @media (min-width: 768px) {
+    height: 400px;
+  }
+}
+
+.link-item {
+  color: #212529;
+  text-decoration: none;
+}
