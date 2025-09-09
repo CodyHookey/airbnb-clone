@@ -33,6 +33,10 @@ class Layout extends React.Component {
   }
 
   handleClick() {
+    this.setState({
+      propertyOwner: true,
+    });
+
     fetch(
       `api/users/become-a-host/${this.state.id}`,
       safeCredentials({
@@ -40,11 +44,8 @@ class Layout extends React.Component {
       })
     )
       .then(handleErrors)
-      .then((response) => {
-        this.setState({
-          propertyOwner: response.user.property_owner,
-        });
-        window.location.reload();
+      .then(() => {
+        this.getAuth();
       })
       .catch((error) => {
         console.log(error);
