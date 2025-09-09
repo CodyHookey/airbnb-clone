@@ -44,6 +44,7 @@ class Layout extends React.Component {
         this.setState({
           propertyOwner: response.user.property_owner,
         });
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
